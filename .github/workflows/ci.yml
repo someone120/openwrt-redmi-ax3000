@@ -19,7 +19,7 @@ jobs:
             git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Hook the openwrt_core URL for opkg
         run: |
@@ -52,20 +52,20 @@ jobs:
           make -j$(nproc) IGNORE_ERRORS=1
 
       - name: Upload bin to artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bin-ipq50xx-arm
           path: bin/targets/ipq50xx/arm/*
 
       - name: Upload dl to artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dl
           path: dl/*
 
   gh-pages:
     needs: [ build ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -116,7 +116,7 @@ jobs:
 
   release:
     needs: [ build ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
