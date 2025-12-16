@@ -15,8 +15,10 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install build-essential clang flex g++ gawk gcc-multilib gettext \
-            git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev
+          sudo apt install -y build-essential clang flex bison g++ gawk
+          sudo apt install -y gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev
+          sudo apt install -y python3-setuptools rsync swig unzip zlib1g-dev file wget
+   
 
       - name: Checkout
         uses: actions/checkout@v3
